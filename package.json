@@ -5,6 +5,7 @@
   "author": "wataru.ochi@troisvagues.com",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "coffee-script": "^1.12.7",
     "git": "^0.1.5",
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.2",
