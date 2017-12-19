@@ -71,7 +71,7 @@ module.exports = (robot) ->
 
     message = (send) ->
         members = [
-            "@wataru\ ochi", "@takuto\ nagano", "@NS\ 坂本\ 大岳"
+            "@wataru%20ochi", "@takuto%20nagano", "@NS%20坂本%20大岳"
         ]
 
         selectDb((lastDuty) ->
