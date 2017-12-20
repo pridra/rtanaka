@@ -73,8 +73,8 @@ module.exports = (robot) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
-                members = (member_raw["name"] when !member_raw[is_bot] \
-                for member_raw in JSON.parse(body)["members"])
+                members = (member_raw["name"] \
+                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"])
                 selectDb((lastDuty) ->
                     member = ""
                     loop
