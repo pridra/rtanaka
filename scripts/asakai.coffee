@@ -86,6 +86,7 @@ module.exports = (robot) ->
                                       break
                                   send(" #{member} なのです。")
                                   return
+                               )
             return
         )
 
