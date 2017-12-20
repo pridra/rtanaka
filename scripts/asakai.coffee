@@ -73,7 +73,7 @@ module.exports = (robot) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
-                members = (member_raw["id"] \
+                members = (member_raw["name"] \
                 for member_raw in JSON.parse(body)["members"])
                 selectDb((lastDuty) ->
                     member = ""
