@@ -81,7 +81,7 @@ module.exports = (robot) ->
                         index = Math.floor(Math.random() * members.length)
                         member = members[index]
                         if member isnt lastDuty
-                            psertDb(member)
+                            upsertDb(member)
                             break
                     send(" #{member} なのです。")
                     return
