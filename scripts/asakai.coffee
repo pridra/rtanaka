@@ -88,8 +88,6 @@ module.exports = (robot) ->
                                   return
                                )
             return
-        )
-
         return
 
     upsertDb = (name) ->
