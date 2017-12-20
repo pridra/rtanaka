@@ -73,7 +73,7 @@ module.exports = (robot) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
-                members = (member_raw["name"] \
+                members = (member_raw["id"] \
                 for member_raw in JSON.parse(body)["members"])
                 selectDb((lastDuty) ->
                     member = ""
@@ -83,7 +83,7 @@ module.exports = (robot) ->
                         if member isnt lastDuty
                             upsertDb(member)
                             break
-                    send(" #{member} なのです。")
+                    send(" @#{member} なのです。")
                     return
                 )
                 return
