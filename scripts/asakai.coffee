@@ -70,21 +70,25 @@ module.exports = (robot) ->
     ).start()
 
     message = (send) ->
-        members = [
-            "@wataru ochi", "@takuto nagano", "@NS 坂本 大岳"
-        ]
-
-        selectDb((lastDuty) ->
-            member = ""
-            loop
-                index = Math.floor(Math.random() * members.length)
-                member = members[index]
-                if member isnt lastDuty
-                    upsertDb(member)
-                    break
-            send(" #{member} なのです。")
+        request = require('request')
+        request.get
+            url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}"
+                  , (err, response, body) ->
+                      members = (member_raw["name"] \
+                      for member_raw in JSON.parse(body)["members"])
+                              selectDb((lastDuty) ->
+                                  member = ""
+                                  loop
+                                      index = Math.floor(Math.random() * members.length)
+                                      member = members[index]
+                                      if member isnt lastDuty
+                                          upsertDb(member)
+                                      break
+                                  send(" #{member} なのです。")
+                                  return
             return
         )
+
         return
 
     upsertDb = (name) ->
