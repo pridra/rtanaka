@@ -47,7 +47,7 @@ module.exports = (robot) ->
     ).start()
 
     new CronJob('30 13 * * 1', () ->
-        robot.send {room: "sprint_planning"}, "@channel\n今週のスプリント計画の時間ではないですか。\nこれはありがたい。"
+        robot.send {room: "sprint_planning"}, "@channel\n今週のスプリント計画の時間ではないですか。"
         return
     ).start()
 
@@ -74,7 +74,7 @@ module.exports = (robot) ->
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
                 members = (member_raw["name"] \
-                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"])
+                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"] || member_raw["id"] != "USLACKBOT")
                 selectDb((lastDuty) ->
                     member = ""
                     loop
