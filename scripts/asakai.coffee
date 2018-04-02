@@ -74,7 +74,7 @@ module.exports = (robot) ->
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
                 members = (member_raw["name"] \
-                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"] && member_raw["id"] != "USLACKBOT" && member_raw["id"] != "U7DUMUDU6")
+                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"] && member_raw["id"] != "USLACKBOT" && member_raw["id"] != "U7DUMUDU6" && member_raw["id"] != "U94FSDCR3" && member_raw["id"] != "U9CCRBFU1")
                 selectDb((lastDuty) ->
                     member = ""
                     loop
