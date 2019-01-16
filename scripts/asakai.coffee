@@ -76,9 +76,11 @@ module.exports = (robot) ->
                 members = (member_raw["name"] \
                 for member_raw in JSON.parse(body)["members"] when \
                    !member_raw["is_bot"] && \
-                    member_raw["id"] != "USLACKBOT" && member_raw["id"] != "U7DUMUDU6" && \
-                    member_raw["id"] != "U94FSDCR3" && member_raw["id"] != "U9CCRBFU1" && \
-                    member_raw["id"] != "UA3F1CJJZ")
+                    member_raw["id"] == "UBHAXJD8V" || member_raw["id"] == "U1X8UV12N" && \
+                    member_raw["id"] == "UBG88U4SW" || member_raw["id"] == "UBH3JT7V1" && \
+                    member_raw["id"] == "U9XV9BZCK" || member_raw["id"] == "UBJ7T59V5" && \
+                    member_raw["id"] == "UFA4E2E86" || member_raw["id"] == "UCLUECR5M" && \
+                    member_raw["id"] == "U9TAHG70A")
                 selectDb((lastDuty) ->
                     member = ""
                     loop
