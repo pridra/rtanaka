@@ -24,50 +24,50 @@ module.exports = (robot) ->
         )
         return
 
-    robot.hear /(日直)/i, (msg) ->
-        message((turnOfDuty) ->
-            msg.send "あいっ。今日の日直は#{turnOfDuty}"
-            return
-        )
-        return
+#    robot.hear /(日直)/i, (msg) ->
+#        message((turnOfDuty) ->
+#            msg.send "あいっ。今日の日直は#{turnOfDuty}"
+#            return
+#        )
+#        return
 
-    robot.hear /(次いこう)/i, (msg) ->
-        message((turnOfDuty) ->
-            msg.send "あいっ。じゃあ#{turnOfDuty}"
-            return
-        )
-        return
+#    robot.hear /(次いこう)/i, (msg) ->
+#        message((turnOfDuty) ->
+#            msg.send "あいっ。じゃあ#{turnOfDuty}"
+#            return
+#        )
+#        return
 
-    new CronJob('25 13 * * 1-5', () ->
-        message((turnOfDuty) ->
-            robot.send {room: "dairy_scrum"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
-            return
-        )
-        return
-    ).start()
+#    new CronJob('25 13 * * 1-5', () ->
+#        message((turnOfDuty) ->
+#            robot.send {room: "dairy_scrum"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
+#            return
+#        )
+#        return
+#    ).start()
 
-    new CronJob('30 13 * * 1', () ->
-        robot.send {room: "sprint_planning"}, "@channel\n今週のスプリント計画の時間ではないですか。"
-        return
-    ).start()
+#    new CronJob('30 13 * * 1', () ->
+#        robot.send {room: "sprint_planning"}, "@channel\n今週のスプリント計画の時間ではないですか。"
+#        return
+#    ).start()
 
-    new CronJob('30 13 * * 2-5', () ->
+    new CronJob('30 10 * * 1-5', () ->
         robot.send {room: "dairy_scrum"}, "@channel\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
         return
     ).start()
 
-    new CronJob('25 17 * * 5', () ->
-        message((turnOfDuty) ->
-            robot.send {room: "sprint_review"}, "やあ、みなさん。お疲れ様。\n今週の当番は#{turnOfDuty}"
-            return
-        )
-        return
-    ).start()
+#    new CronJob('25 17 * * 5', () ->
+#        message((turnOfDuty) ->
+#            robot.send {room: "sprint_review"}, "やあ、みなさん。お疲れ様。\n今週の当番は#{turnOfDuty}"
+#            return
+#        )
+#        return
+#    ).start()
 
-    new CronJob('30 17 * * 5', () ->
-        robot.send {room: "sprint_review"}, "@channel\nうふふふふ。\nスプリントレビューの時間だよ。"
-        return
-    ).start()
+#    new CronJob('30 17 * * 5', () ->
+#        robot.send {room: "sprint_review"}, "@channel\nうふふふふ。\nスプリントレビューの時間だよ。"
+#        return
+#    ).start()
 
     message = (send) ->
         request = require('request')
