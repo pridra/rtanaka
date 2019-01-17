@@ -24,19 +24,19 @@ module.exports = (robot) ->
         )
         return
 
-#    robot.hear /(日直)/i, (msg) ->
-#        message((turnOfDuty) ->
-#            msg.send "あいっ。今日の日直は#{turnOfDuty}"
-#            return
-#        )
-#        return
+    robot.hear /(日直)/i, (msg) ->
+        message((turnOfDuty) ->
+            msg.send "あいっ。今日の日直は#{turnOfDuty}"
+            return
+        )
+        return
 
-#    robot.hear /(次いこう)/i, (msg) ->
-#        message((turnOfDuty) ->
-#            msg.send "あいっ。じゃあ#{turnOfDuty}"
-#            return
-#        )
-#        return
+    robot.hear /(次いこう)/i, (msg) ->
+        message((turnOfDuty) ->
+            msg.send "あいっ。じゃあ#{turnOfDuty}"
+            return
+        )
+        return
 
 #    new CronJob('25 13 * * 1-5', () ->
 #        message((turnOfDuty) ->
@@ -52,7 +52,7 @@ module.exports = (robot) ->
 #    ).start()
 
     new CronJob('30 10 * * 1-5', () ->
-        robot.send {room: "dairy_scrum"}, "@channel\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
+        robot.send {room: "pj-frima"}, "@channel\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
         return
     ).start()
 
