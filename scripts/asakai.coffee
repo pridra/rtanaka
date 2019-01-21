@@ -52,7 +52,7 @@ module.exports = (robot) ->
 #    ).start()
 
     new CronJob('30 10 * * 1-5', () ->
-        robot.send {room: "pj-frima"}, "@channel\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
+        robot.send {room: "pj-frima"}, "@frima\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
         return
     ).start()
 
