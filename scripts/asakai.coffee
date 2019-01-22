@@ -16,7 +16,7 @@ module.exports = (robot) ->
                     console.log "Error: #{err}"
                 else
                     console.log "successfully connected."
-                    robot.send {room: "dairy_scrum"}, "#{cache}"
+                    robot.send {room: "pj-frima-scrum"}, "#{cache}"
                 return
             )
 
@@ -38,21 +38,21 @@ module.exports = (robot) ->
         )
         return
 
-#    new CronJob('25 13 * * 1-5', () ->
-#        message((turnOfDuty) ->
-#            robot.send {room: "dairy_scrum"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
-#            return
-#        )
-#        return
-#    ).start()
+    new CronJob('30 09 * * 1-5', () ->
+        message((turnOfDuty) ->
+            robot.send {room: "pj-frima-scrum"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
+            return
+        )
+        return
+    ).start()
 
-#    new CronJob('30 13 * * 1', () ->
-#        robot.send {room: "sprint_planning"}, "@channel\n今週のスプリント計画の時間ではないですか。"
-#        return
-#    ).start()
+    new CronJob('00 11 * * 2', () ->
+        robot.send {room: "pj-frima-scrum"}, "@channel\n今週のスプリント計画の時間ではないですか。"
+        return
+    ).start()
 
     new CronJob('30 10 * * 1-5', () ->
-        robot.send {room: "pj-frima"}, "@frima\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
+        robot.send {room: "pj-frima-scrum"}, "@frima\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
         return
     ).start()
 
