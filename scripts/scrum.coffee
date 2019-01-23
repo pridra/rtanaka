@@ -28,7 +28,7 @@ module.exports = (robot) ->
                     console.log "check db: Error #{err}"
                 else
                     console.log "check db: successfully connected."
-                    robot.send {room: "pj-frima-scrum"}, "#{cache}"
+                    robot.send {room: "hubot-test"}, "#{cache}"
                 return
             )
 
