@@ -7,6 +7,16 @@ redis.auth(rtg.auth.split(":")[1])
 # for local test.
 # redis = require('redis').createClient()
 
+
+# Description:
+#  this script is used to scrum
+#
+# Notes:
+#  nothing
+#
+# Author:
+#  wataru.ochi
+
 module.exports = (robot) ->
 
     robot.hear /(DB確認)/i, (msg) ->

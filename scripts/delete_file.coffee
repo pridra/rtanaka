@@ -28,6 +28,16 @@ answerYes = [
     'Yes'
 ]
 
+
+# Description:
+#  Slackに登録されたファイルを一括削除するためのscript
+# 
+# Notes:
+#  nothing
+# 
+# Author:
+#  wataru.ochi
+
 module.exports = (robot) ->
 
 #    new CronJob('30 08 1 * *', () ->
