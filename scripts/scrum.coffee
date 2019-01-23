@@ -84,8 +84,8 @@ module.exports = (robot) ->
     message = (send) ->
         # UBHAXJD8V:前田, U1X8UV12N:山城, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田,
         # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智, UCLUECR5M:武田, U9TAHG70A:西
-        members = ["UBHAXJD8V", "U1X8UV12N", "UBG88U4SW", "UBH3JT7V1", "U9XV9BZCK","UBJ7T59V5", \
-                   "UBLLAS3SQ", "UF847TJ7K", "UFA4E2E86", "UCLUECR5M", "U9TAHG70A"]
+        members = ["@UBHAXJD8V", "@U1X8UV12N", "@UBG88U4SW", "@UBH3JT7V1", "@U9XV9BZCK","@UBJ7T59V5", \
+                   "@UBLLAS3SQ", "@UF847TJ7K", "@UFA4E2E86", "@UCLUECR5M", "@U9TAHG70A"]
         selectDb((lastDuty) ->
              member = ""
              loop
@@ -94,7 +94,7 @@ module.exports = (robot) ->
                  if member isnt lastDuty
                      upsertDb(member)
                      break
-             send(" @#{member} なのです。")
+             send(" #{member} なのです。")
              return
         )
         return
