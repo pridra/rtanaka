@@ -94,6 +94,8 @@ module.exports = (robot) ->
                     member_raw["id"] == "UFA4E2E86" || member_raw["id"] == "UCLUECR5M" && \
                     member_raw["id"] == "U9TAHG70A")
                 selectDb((lastDuty) ->
+                    console.log "lastDuty: #{lastDuty}"
+                    console.log "members: #{members}"
                     member = ""
                     loop
                         index = Math.floor(Math.random() * members.length)
