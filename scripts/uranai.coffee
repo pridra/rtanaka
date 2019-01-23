@@ -1,4 +1,14 @@
-#http://jugemkey.jp/api/waf/api_free.php
+# Descriptions:
+#  占いをするためのscript
+#
+# Notes:
+#  http://jugemkey.jp/api/waf/api_free.php
+#
+# Author:
+#  wataru.ochi
+#
+
+
 http = require('http')
 
 constellations = [
@@ -25,6 +35,9 @@ rank = [
   "最高！"
 ]
 
+# Commands:
+#  占いをする
+#
 module.exports = (robot) ->
   robot.hear /(占い|運勢)/i, (msg) ->
     check = ''

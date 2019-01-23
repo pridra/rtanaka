@@ -1,7 +1,13 @@
-#https://slack.com/api/
-
-# Entry example
-# ファイル削除 YES 120 pass:nextscape
+# Description:
+#  Slackに登録されたファイルを一括削除するためのscript
+# 
+# Notes:
+#  Entry example
+#  ファイル削除 YES 120 pass:nextscape
+#  https://slack.com/api/
+#
+# Author:
+#  wataru.ochi
 
 request = require('request')
 crypto = require("crypto");
@@ -28,16 +34,9 @@ answerYes = [
     'Yes'
 ]
 
-
-# Description:
-#  Slackに登録されたファイルを一括削除するためのscript
-# 
-# Notes:
-#  nothing
-# 
-# Author:
-#  wataru.ochi
-
+# Commands:
+#  slackに存在するファイルをお掃除する
+#
 module.exports = (robot) ->
 
 #    new CronJob('30 08 1 * *', () ->

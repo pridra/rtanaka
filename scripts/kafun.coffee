@@ -1,7 +1,20 @@
+# Descriptions:
+#  花粉情報をお知らせするscript
+#
+# Notes:
+#  nothing
+#
+# Author:
+#  wataru.ochi
+#
+
 client = require('cheerio-httpcli')
 
 kafun_url = "http://weather.goo.ne.jp/pollen/p0018.html"
 
+# Commands:
+#  花粉情報をお知らせする
+#
 module.exports = (robot) ->
   robot.hear /(花粉)/i, (msg) ->
     table = []

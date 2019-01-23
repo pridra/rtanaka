@@ -1,3 +1,13 @@
+# Descriptions:
+#  電車の遅延情報をお知らせするscript
+#
+# Notes:
+#  http://transit.yahoo.co.jp/traininfo/area/4/
+#
+# Author:
+#  wataru.ochi
+#
+
 client = require('cheerio-httpcli')
 
 train_url = "http://transit.yahoo.co.jp/traininfo/area/4/"
@@ -5,6 +15,9 @@ train_url = "http://transit.yahoo.co.jp/traininfo/area/4/"
 table = []
 datetext = ""
 
+# Commands:
+#  電車の遅延情報をお知らせする
+#
 module.exports = (robot) ->
   robot.hear /(遅延)/i, (msg) ->
     table = []

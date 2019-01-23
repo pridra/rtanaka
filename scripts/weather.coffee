@@ -1,6 +1,18 @@
-#http://weather.livedoor.com/weather_hacks/webservice
+# Descriptions:
+#  お天気情報をお知らせするscript
+#
+# Notes:
+#  http://weather.livedoor.com/weather_hacks/webservice
+#
+# Author:
+#  wataru.ochi
+#
+
 http = require('http')
 
+# Commands:
+#  お天気情報をお知らせする
+#
 module.exports = (robot) ->
   robot.hear /天気/i, (msg) ->
     city = '130010'
