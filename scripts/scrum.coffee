@@ -25,9 +25,9 @@ module.exports = (robot) ->
         selectDb((lastDuty) ->
             connected = redis.get("LAST_DUTY", (err, cache) ->
                 if err
-                    console.log "Error: #{err}"
+                    console.log "check db: Error #{err}"
                 else
-                    console.log "successfully connected."
+                    console.log "check db: successfully connected."
                     robot.send {room: "pj-frima-scrum"}, "#{cache}"
                 return
             )
@@ -70,14 +70,14 @@ module.exports = (robot) ->
 
 #    new CronJob('25 17 * * 5', () ->
 #        message((turnOfDuty) ->
-#            robot.send {room: "sprint_review"}, "やあ、みなさん。お疲れ様。\n今週の当番は#{turnOfDuty}"
+#            robot.send {room: "pj-frima-scrum"}, "やあ、みなさん。お疲れ様。\n今週の当番は#{turnOfDuty}"
 #            return
 #        )
 #        return
 #    ).start()
 
 #    new CronJob('30 17 * * 5', () ->
-#        robot.send {room: "sprint_review"}, "@channel\nうふふふふ。\nスプリントレビューの時間だよ。"
+#        robot.send {room: "pj-frima-scrum"}, "@frima\nうふふふふ。\nスプリントレビューの時間だよ。"
 #        return
 #    ).start()
 
@@ -110,16 +110,16 @@ module.exports = (robot) ->
     upsertDb = (name) ->
         connected = redis.set("LAST_DUTY", name)
         if connected
-            console.log "successfully connected."
+            console.log "upsertDb: successfully connected."
             console.log "table upserted."
         return
 
     selectDb = (callback) ->
         connected = redis.get("LAST_DUTY", (err, cache) ->
             if err
-                console.log "Error: #{err}"
+                console.log "selectDb: Error #{err}"
             else
-                console.log "successfully connected."
+                console.log "selectDb: successfully connected."
                 callback(cache)
             return
         )
