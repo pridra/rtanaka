@@ -37,6 +37,7 @@ module.exports = (robot) ->
         return
 
     robot.hear /(日直)/i, (msg) ->
+        console.log "test log: 日直"
         message((turnOfDuty) ->
             msg.send "あいっ。今日の日直は#{turnOfDuty}"
             return
@@ -85,6 +86,7 @@ module.exports = (robot) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
+                console.log "test log: 日直レスポンス"
                 members = (member_raw["name"] \
                 for member_raw in JSON.parse(body)["members"] when \
                    !member_raw["is_bot"] && \
@@ -94,6 +96,7 @@ module.exports = (robot) ->
                     member_raw["id"] == "UFA4E2E86" || member_raw["id"] == "UCLUECR5M" && \
                     member_raw["id"] == "U9TAHG70A")
                 selectDb((lastDuty) ->
+                    console.log "test log: selectDb レスポンス"
                     member = ""
                     loop
                         index = Math.floor(Math.random() * members.length)
