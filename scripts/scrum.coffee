@@ -89,13 +89,16 @@ module.exports = (robot) ->
 
                 # UBHAXJD8V:前田, U1X8UV12N:山城, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田,
                 # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智, UCLUECR5M:武田, U9TAHG70A:西
-                for member_raw in JSON.parse(body)["members"] when \
-                   !member_raw["is_bot"], \
-                    member_raw["id"] == "UBHAXJD8V", member_raw["id"] == "U1X8UV12N", \
-                    member_raw["id"] == "UBG88U4SW", member_raw["id"] == "UBH3JT7V1", \
-                    member_raw["id"] == "U9XV9BZCK", member_raw["id"] == "UBJ7T59V5", \
-                    member_raw["id"] == "UFA4E2E86", member_raw["id"] == "UCLUECR5M", \
-                    member_raw["id"] == "U9TAHG70A")
+                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"] \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBHAXJD8V" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U1X8UV12N" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBG88U4SW" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBH3JT7V1" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U9XV9BZCK" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBJ7T59V5" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UFA4E2E86" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UCLUECR5M" \
+                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U9TAHG70A")
 
                 console.log "members: #{members}"
 #        members = ["UBHAXJD8V", "U1X8UV12N", "UBG88U4SW", "UBH3JT7V1", "U9XV9BZCK","UBJ7T59V5", \
