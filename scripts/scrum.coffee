@@ -85,20 +85,22 @@ module.exports = (robot) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
-                members = (member_raw["name"] \
-
+                
                 # UBHAXJD8V:前田, U1X8UV12N:山城, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田,
                 # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智, UCLUECR5M:武田, U9TAHG70A:西
-                for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"] \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBHAXJD8V" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U1X8UV12N" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBG88U4SW" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBH3JT7V1" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U9XV9BZCK" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UBJ7T59V5" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UFA4E2E86" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "UCLUECR5M" \
-                for member_raw in JSON.parse(body)["members"] when member_raw["id"] == "U9TAHG70A")
+                member_raw = for member_raw in JSON.parse(body)["members"] when !member_raw["is_bot"]
+                mem1 = for mem in member_raw when member_raw["id"] == "UBHAXJD8V"
+                mem2 = for mem in member_raw when member_raw["id"] == "U1X8UV12N"
+                mem3 = for mem in member_raw when member_raw["id"] == "UBG88U4SW"
+                mem4 = for mem in member_raw when member_raw["id"] == "UBH3JT7V1"
+                mem5 = for mem in member_raw when member_raw["id"] == "U9XV9BZCK"
+                mem6 = for mem in member_raw when member_raw["id"] == "UBJ7T59V5"
+                mem7 = for mem in member_raw when member_raw["id"] == "UBLLAS3SQ"
+                mem8 = for mem in member_raw when member_raw["id"] == "UF847TJ7K"
+                mem9 = for mem in member_raw when member_raw["id"] == "UFA4E2E86"
+                mem10 = for mem in member_raw when member_raw["id"] == "UCLUECR5M"
+                mem11 = for mem in member_raw when member_raw["id"] == "U9TAHG70A"
+                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9, mem10, mem11]
 
                 console.log "members: #{members}"
 #        members = ["UBHAXJD8V", "U1X8UV12N", "UBG88U4SW", "UBH3JT7V1", "U9XV9BZCK","UBJ7T59V5", \
