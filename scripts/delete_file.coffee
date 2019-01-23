@@ -13,12 +13,12 @@ request = require('request')
 crypto = require("crypto");
 
 tokenBits = [
-    'xoxb-28756',
-    '6369249-qm',
-    '29045QAjeL',
-    '5hvWMbKAh0',
-    'SAjeL5hvWM',
-    'bKAh0SA'
+    'xoxb-29296',
+    '64457-5263',
+    '71286518-a',
+    'phebJmrEnD',
+    '8R8oIcNiKX',
+    'JmF'
 ]
 
 start_msg = '今月もお掃除をしませう！'
