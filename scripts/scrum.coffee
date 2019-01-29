@@ -58,7 +58,7 @@ module.exports = (robot) ->
         return
     ).start()
 
-    new CronJob('00 11 * * 2', () ->
+    new CronJob('00 11 * * 1', () ->
         robot.send {room: "pj-frima-scrum"}, "@frima\n今週のスプリント計画の時間ではないですか。"
         return
     ).start()
