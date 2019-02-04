@@ -94,7 +94,7 @@ module.exports = (robot) ->
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
                 
                 # UBHAXJD8V:前田, U1X8UV12N:山城, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田,
-                # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智, UCLUECR5M:武田, U9TAHG70A:西
+                # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智
                 mem1 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBHAXJD8V")
                 mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U1X8UV12N")
                 mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBG88U4SW")
@@ -104,9 +104,7 @@ module.exports = (robot) ->
                 mem7 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
                 mem8 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UF847TJ7K")
                 mem9 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UFA4E2E86")
-                mem10 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UCLUECR5M")
-                mem11 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9TAHG70A")
-                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9, mem10, mem11]
+                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9]
 
                 console.log "members: #{members}"
 #        members = ["UBHAXJD8V", "U1X8UV12N", "UBG88U4SW", "UBH3JT7V1", "U9XV9BZCK","UBJ7T59V5", \
