@@ -123,10 +123,10 @@ module.exports = (robot) ->
                 mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
                 members = [mem1, mem2, mem3, mem4, mem5, mem6]
 
-                console.log "sender: #{msg.message.user.id}"
+                console.log "sender: #{msg.message.user.name}"
                 console.log "members: #{members}"
                 selectRVDb((lastDuty) ->
-                     sender = msg.message.user.id
+                     sender = msg.message.user.name
                      member = ""
                      loop
                          index = Math.floor(Math.random() * members.length)
