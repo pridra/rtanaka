@@ -75,7 +75,7 @@ module.exports = (robot) ->
         return
     ).start()
 
-    ## 日直選定メッセージを作成します
+    # 日直選定メッセージを作成します
     message = (send) ->
         request = require('request')
         request.get
@@ -108,7 +108,7 @@ module.exports = (robot) ->
                 )
                 return
 
-    ### レビュワー選定メッセージを作成します
+    # レビュワー選定メッセージを作成します
     messageRV = (send) ->
         request = require('request')
         request.get
@@ -139,7 +139,7 @@ module.exports = (robot) ->
                 )
 
 
-    ### redisに日直を保存（更新）する
+    # redisに日直を保存（更新）する
     upsertDb = (name) ->
         connected = redis.set("LAST_DUTY", name)
         if connected
@@ -149,7 +149,7 @@ module.exports = (robot) ->
             console.log "upsertDb: Error"
         return
 
-    ### 日直をredisから取り出して返す
+    # 日直をredisから取り出して返す
     selectDb = (callback) ->
         connected = redis.get("LAST_DUTY", (err, cache) ->
             if err
@@ -161,7 +161,7 @@ module.exports = (robot) ->
         )
         return
 
-    ### redisにレビュワーを保存（更新）する
+    # redisにレビュワーを保存（更新）する
     upsertRVDb = (name) ->
         connected = redis.set("LAST_DUTY_RV", name)
         if connected
@@ -171,7 +171,7 @@ module.exports = (robot) ->
             console.log "upsertRVDb: Error"
         return
 
-    ### レビュワーをredisから取り出して返す
+    # レビュワーをredisから取り出して返す
     selectRVDb = (callback) ->
         connected = redis.get("LAST_DUTY_RV", (err, cache) ->
             if err
