@@ -37,7 +37,7 @@ module.exports = (robot) ->
         return
 
     robot.hear /(select reviewer)/i, (msg) ->
-        messageRV(turnOfDuty) ->
+        messageRV((turnOfDuty) ->
             msg.send "あいっ。次のレビュワーは#{turnOfDuty}"
             return
         )
