@@ -37,7 +37,7 @@ module.exports = (robot) ->
         return
 
     robot.hear /(select reviewer)/i, (msg) ->
-        message((turnOfDuty) ->
+        messageRV(turnOfDuty) ->
             msg.send "あいっ。次のレビュワーは#{turnOfDuty}"
             return
         )
@@ -75,19 +75,7 @@ module.exports = (robot) ->
         return
     ).start()
 
-#    new CronJob('25 17 * * 5', () ->
-#        message((turnOfDuty) ->
-#            robot.send {room: "pj-frima-scrum"}, "やあ、みなさん。お疲れ様。\n今週の当番は#{turnOfDuty}"
-#            return
-#        )
-#        return
-#    ).start()
-
-#    new CronJob('30 17 * * 5', () ->
-#        robot.send {room: "pj-frima-scrum"}, "@frima\nうふふふふ。\nスプリントレビューの時間だよ。"
-#        return
-#    ).start()
-
+    ## 日直選定メッセージを作成します
     message = (send) ->
         request = require('request')
         request.get
@@ -107,8 +95,6 @@ module.exports = (robot) ->
                 members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9]
 
                 console.log "members: #{members}"
-#        members = ["UBHAXJD8V", "U1X8UV12N", "UBG88U4SW", "UBH3JT7V1", "U9XV9BZCK","UBJ7T59V5", \
-#                   "UBLLAS3SQ", "UF847TJ7K", "UFA4E2E86", "UCLUECR5M", "U9TAHG70A"]
                 selectDb((lastDuty) ->
                      member = ""
                      loop
@@ -122,33 +108,38 @@ module.exports = (robot) ->
                 )
                 return
 
-# slack上のメンバーが多く、その他のチームで追加や削除がある場合はリスト取得よりも決め打ちの方がやりやすいため一旦コメントアウト
-#        request = require('request')
-#        request.get
-#            url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
-#                members = (member_raw["name"] \
-#
-#                for member_raw in JSON.parse(body)["members"] when \
-#                   !member_raw["is_bot"] && \
-#                    member_raw["id"] != "UBHAXJD8V" && member_raw["id"] != "U1X8UV12N" && \
-#                    member_raw["id"] != "UBG88U4SW" && member_raw["id"] != "UBH3JT7V1" && \
-#                    member_raw["id"] != "U9XV9BZCK" && member_raw["id"] != "UBJ7T59V5" && \
-#                    member_raw["id"] != "UFA4E2E86" && member_raw["id"] != "UCLUECR5M" && \
-#                    member_raw["id"] != "U9TAHG70A")
-#                selectDb((lastDuty) ->
-#                    member = ""
-#                    loop
-#                        index = Math.floor(Math.random() * members.length)
-#                        member = members[index]
-#                        if member isnt lastDuty
-#                            upsertDb(member)
-#                            break
-#                    send(" @#{member} なのです。")
-#                    return
-#                )
-#                return
-#        return
+    ### レビュワー選定メッセージを作成します
+    messageRV = (send) ->
+        request = require('request')
+        request.get
+            url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
+                
+                # UBHAXJD8V:前田, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田, UBJ7T59V5:後藤, UBLLAS3SQ:野々下
+                mem1 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBHAXJD8V")
+                mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBG88U4SW")
+                mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBH3JT7V1")
+                mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
+                mem5 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBJ7T59V5")
+                mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
+                members = [mem1, mem2, mem3, mem4, mem5, mem6]
 
+                console.log "sender: #{msg.message.user.id}"
+                console.log "members: #{members}"
+                selectRVDb((lastDuty) ->
+                     sender = msg.message.user.id
+                     member = ""
+                     loop
+                         index = Math.floor(Math.random() * members.length)
+                         member = members[index]
+                         if sender isnt member and member isnt lastDuty
+                             upsertRVDb(member)
+                             break
+                     send(" @#{member} なのです。")
+                     return
+                )
+
+
+    ### redisに日直を保存（更新）する
     upsertDb = (name) ->
         connected = redis.set("LAST_DUTY", name)
         if connected
@@ -158,12 +149,35 @@ module.exports = (robot) ->
             console.log "upsertDb: Error"
         return
 
+    ### 日直をredisから取り出して返す
     selectDb = (callback) ->
         connected = redis.get("LAST_DUTY", (err, cache) ->
             if err
                 console.log "selectDb: Error #{err}"
             else
                 console.log "selectDb: successfully connected."
+                callback(cache)
+            return
+        )
+        return
+
+    ### redisにレビュワーを保存（更新）する
+    upsertRVDb = (name) ->
+        connected = redis.set("LAST_DUTY_RV", name)
+        if connected
+            console.log "upsertRVDb: successfully connected."
+            console.log "table upserted."
+        else
+            console.log "upsertRVDb: Error"
+        return
+
+    ### レビュワーをredisから取り出して返す
+    selectRVDb = (callback) ->
+        connected = redis.get("LAST_DUTY_RV", (err, cache) ->
+            if err
+                console.log "selectRVDb: Error #{err}"
+            else
+                console.log "selectRVDb: successfully connected."
                 callback(cache)
             return
         )
