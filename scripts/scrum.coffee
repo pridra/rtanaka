@@ -37,7 +37,7 @@ module.exports = (robot) ->
         return
 
     robot.hear /(select reviewer)/i, (msg) ->
-        messageRV((turnOfDuty) ->
+        messageRV(msg, (turnOfDuty) ->
             msg.send "あいっ。次のレビュワーは#{turnOfDuty}"
             return
         )
@@ -109,7 +109,7 @@ module.exports = (robot) ->
                 return
 
     # レビュワー選定メッセージを作成します
-    messageRV = (send) ->
+    messageRV = (msg, send) ->
         request = require('request')
         request.get
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
@@ -171,7 +171,7 @@ module.exports = (robot) ->
             console.log "upsertRVDb: Error"
         return
 
-    # レビュワーをredisから取り出して返す
+    ### レビュワーをredisから取り出して返す
     selectRVDb = (callback) ->
         connected = redis.get("LAST_DUTY_RV", (err, cache) ->
             if err
