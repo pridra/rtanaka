@@ -171,7 +171,7 @@ module.exports = (robot) ->
             console.log "upsertRVDb: Error"
         return
 
-    ### レビュワーをredisから取り出して返す
+    # レビュワーをredisから取り出して返す
     selectRVDb = (callback) ->
         connected = redis.get("LAST_DUTY_RV", (err, cache) ->
             if err
