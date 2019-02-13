@@ -133,7 +133,7 @@ module.exports = (robot) ->
                          index = Math.floor(Math.random() * members.length)
                          member = members[index]
                          console.log "member: #{member}"
-                         bool = sender isnt menber
+                         bool = sender isnt member
                          console.log "bool: #{bool}"
                          if sender isnt member and member isnt lastDuty
                              upsertRVDb(member)
