@@ -117,24 +117,18 @@ module.exports = (robot) ->
                 # UBHAXJD8V:前田, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田, UBJ7T59V5:後藤, UBLLAS3SQ:野々下
                 mem1 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBHAXJD8V")
                 mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBG88U4SW")
-#                mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBH3JT7V1")
-#                mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
-#                mem5 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBJ7T59V5")
-#                mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
-                mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UFA4E2E86")
-#                members = [mem1, mem2, mem3, mem4, mem5, mem6]
-                members = [mem1, mem2, mem3]
+                mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBH3JT7V1")
+                mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
+                mem5 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBJ7T59V5")
+                mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
+                members = [mem1, mem2, mem3, mem4, mem5, mem6]
 
-                console.log "sender: #{msg.message.user.name}"
                 selectRVDb((lastDuty) ->
                      sender = msg.message.user.name
                      member = ""
                      loop
                          index = Math.floor(Math.random() * members.length)
                          member = members[index]
-                         console.log "member: #{member}"
-                         bool = "#{sender}" isnt "#{member}"
-                         console.log "bool: #{bool}"
                          if "#{sender}" isnt "#{member}" and "#{member}" isnt "#{lastDuty}"
                              upsertRVDb(member)
                              break
