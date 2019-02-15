@@ -163,7 +163,7 @@ module.exports = (robot) ->
       url = ''
       for c in city
           if msg.message.text.indexOf(c.name) != -1
-              url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=' + city.id
+              url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=' + c.id
               console.log "url: #{url}"
               break
 
