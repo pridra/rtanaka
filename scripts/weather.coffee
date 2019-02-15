@@ -158,6 +158,8 @@ module.exports = (robot) ->
 	      { name: "南大東", id: "472000" },
 	      { name: "宮古島", id: "473000" },
 	      { name: "石垣島", id: "474010" },
+              { name: "与那国島", id: "474020" }]
+      
       url = ''
       for c in city
           if msg.message.text.indexOf(c.name) != -1
