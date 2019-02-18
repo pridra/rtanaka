@@ -9,12 +9,12 @@
 
 CronJob = require('cron').CronJob
 
-rtg = require("url").parse(process.env.REDIS_URL)
-redis = require("redis").createClient(rtg.port, rtg.hostname)
-redis.auth(rtg.auth.split(":")[1])
+#rtg = require("url").parse(process.env.REDIS_URL)
+#redis = require("redis").createClient(rtg.port, rtg.hostname)
+#redis.auth(rtg.auth.split(":")[1])
 
 # for local test.
-# redis = require('redis').createClient()
+redis = require('redis').createClient()
 
 # Commands:
 #  send scrum message to slack
@@ -43,13 +43,14 @@ module.exports = (robot) ->
         )
         return
 
-    robot.hear /(ランキング)/i, (msg) ->
+    robot.hear /(レビューランキング)/i, (msg) ->
         selectRankingDb((callback) ->
             if callback?
                 res = JSON.parse(callback)
                 max = 0
                 first = ''
                 for member in res
+                    console.log "#{member.name}さん #{member.count}回"
                     if member.count > max
                         max = member.count
                         first = member.name
@@ -57,6 +58,10 @@ module.exports = (robot) ->
             else
                 msg.send "あいっ。まだ選んでないかも。"
         )
+        return
+
+    robot.hear /(ランキングクリア)/i, (msg) ->
+        deleteRankingDb()
         return
 
     robot.hear /(日直)/i, (msg) ->
@@ -246,4 +251,13 @@ module.exports = (robot) ->
                 callback(cache)
             return
         )
+        return
+
+    # レビュワー当せん回数をクリアする
+    deleteRankingDb = () ->
+        connected = redis.del("RV_COUNT")
+        if connected
+            console.log "ranking key deleted."
+        else
+            console.log "ranking db failed connecetd error."
         return
