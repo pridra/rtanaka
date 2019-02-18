@@ -9,12 +9,12 @@
 
 CronJob = require('cron').CronJob
 
-#rtg = require("url").parse(process.env.REDIS_URL)
-#redis = require("redis").createClient(rtg.port, rtg.hostname)
-#redis.auth(rtg.auth.split(":")[1])
+rtg = require("url").parse(process.env.REDIS_URL)
+redis = require("redis").createClient(rtg.port, rtg.hostname)
+redis.auth(rtg.auth.split(":")[1])
 
 # for local test.
-redis = require('redis').createClient()
+# redis = require('redis').createClient()
 
 # Commands:
 #  send scrum message to slack
