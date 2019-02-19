@@ -9,6 +9,7 @@
 
 CronJob = require('cron').CronJob
 
+
 rtg = require("url").parse(process.env.REDIS_URL)
 redis = require("redis").createClient(rtg.port, rtg.hostname)
 redis.auth(rtg.auth.split(":")[1])
@@ -212,7 +213,7 @@ module.exports = (robot) ->
                  flag = false
                  res = JSON.parse(value)
                  for n, i in res
-                     if n.name is name
+                     if "#{n.name}" is "#{name}"
                          res.splice(i, 1, { name: "#{n.name}", count: n.count+1 })
                          connected = redis.set("RV_COUNT", JSON.stringify(res))
                          if connected
