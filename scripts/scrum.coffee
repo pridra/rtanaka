@@ -140,11 +140,10 @@ module.exports = (robot) ->
                 mem1 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBHAXJD8V")
                 mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBG88U4SW")
                 mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBH3JT7V1")
-#                mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
+                mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
                 mem5 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBJ7T59V5")
                 mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
-#                members = [mem1, mem2, mem3, mem4, mem5, mem6]
-                members = [mem1, mem2, mem3, mem5, mem6]
+                members = [mem1, mem2, mem3, mem4, mem5, mem6]
 
                 selectRVDb((lastDuty) ->
                      sender = msg.message.user.name
