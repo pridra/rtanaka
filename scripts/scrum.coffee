@@ -113,8 +113,9 @@ module.exports = (robot) ->
                 mem6 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBJ7T59V5")
                 mem7 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
                 mem8 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UF847TJ7K")
-                mem9 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UFA4E2E86")
-                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9]
+#                mem9 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UFA4E2E86")
+#                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9]
+                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8]
 
                 console.log "members: #{members}"
                 selectDb((lastDuty) ->
