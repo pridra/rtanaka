@@ -104,9 +104,9 @@ module.exports = (robot) ->
             url: "https://slack.com/api/users.list?token=#{process.env.HUBOT_SLACK_TOKEN}", (err, response, body) ->
                 
                 # UBHAXJD8V:前田, U1X8UV12N:山城, UBG88U4SW:杉本, UBH3JT7V1:島内, U9XV9BZCK:山田,
-                # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智
+                # UBJ7T59V5:後藤, UBLLAS3SQ:野々下, UF847TJ7K:川上, UFA4E2E86:越智, UG9NT8J85:チョ, UGLJSUSCD:木口
                 mem1 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBHAXJD8V")
-                mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U1X8UV12N")
+#                mem2 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U1X8UV12N")
                 mem3 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBG88U4SW")
                 mem4 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBH3JT7V1")
                 mem5 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "U9XV9BZCK")
@@ -114,8 +114,9 @@ module.exports = (robot) ->
                 mem7 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UBLLAS3SQ")
                 mem8 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UF847TJ7K")
 #                mem9 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UFA4E2E86")
-#                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9]
-                members = [mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8]
+                mem10 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UG9NT8J85")
+                mem11 = (mem["name"] for mem in JSON.parse(body)["members"] when mem["id"] == "UGLJSUSCD")
+                members = [mem1, mem3, mem4, mem5, mem6, mem7, mem8, mem10, mem11]
 
                 console.log "members: #{members}"
                 selectDb((lastDuty) ->
@@ -123,7 +124,7 @@ module.exports = (robot) ->
                      loop
                          index = Math.floor(Math.random() * members.length)
                          member = members[index]
-                         if member isnt lastDuty
+                         if "#{member}" isnt "#{lastDuty}"
                              upsertDb(member)
                              break
                      send(" @#{member} なのです。")
