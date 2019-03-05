@@ -97,6 +97,11 @@ module.exports = (robot) ->
         return
     ).start()
 
+    new CronJob('00 15 * * 1-5', () ->
+        robot.send {room: "pj-frima-rodin"}, "@UGNK5RYQG, @UGPBSKVGS\n継ぐのは私だ"
+        return
+    ).start()
+
     # 日直選定メッセージを作成します
     message = (send) ->
         request = require('request')
