@@ -65,37 +65,37 @@ module.exports = (robot) ->
         deleteRankingDb()
         return
 
-    robot.hear /(日直)/i, (msg) ->
-        message((turnOfDuty) ->
-            msg.send "あいっ。今日の日直は#{turnOfDuty}"
-            return
-        )
-        return
+#    robot.hear /(日直)/i, (msg) ->
+#        message((turnOfDuty) ->
+#            msg.send "あいっ。今日の日直は#{turnOfDuty}"
+#            return
+#        )
+#        return
 
-    robot.hear /(次いこう)/i, (msg) ->
-        message((turnOfDuty) ->
-            msg.send "あいっ。じゃあ#{turnOfDuty}"
-            return
-        )
-        return
+#    robot.hear /(次いこう)/i, (msg) ->
+#        message((turnOfDuty) ->
+#            msg.send "あいっ。じゃあ#{turnOfDuty}"
+#            return
+#        )
+#        return
 
-    new CronJob('30 09 * * 1-5', () ->
-        message((turnOfDuty) ->
-            robot.send {room: "pj-frima-rtanaka"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
-            return
-        )
-        return
-    ).start()
+#    new CronJob('30 09 * * 1-5', () ->
+#        message((turnOfDuty) ->
+#            robot.send {room: "pj-frima-rtanaka"}, "やぁ、みなさん。おはやう。\n今日の当番は#{turnOfDuty}"
+#            return
+#        )
+#        return
+#    ).start()
 
-    new CronJob('00 11 * * 1', () ->
-        robot.send {room: "pj-frima-rtanaka"}, "@frima\n今週のスプリント計画の時間ではないですか。"
-        return
-    ).start()
+#    new CronJob('00 11 * * 1', () ->
+#        robot.send {room: "pj-frima-rtanaka"}, "@frima\n今週のスプリント計画の時間ではないですか。"
+#        return
+#    ).start()
 
-    new CronJob('30 10 * * 1-5', () ->
-        robot.send {room: "pj-frima-rtanaka"}, "@frima\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
-        return
-    ).start()
+#    new CronJob('30 10 * * 1-5', () ->
+#        robot.send {room: "pj-frima-rtanaka"}, "@frima\nお忙しいところすみません。\nデイリースクラムの時間ですね。"
+#        return
+#    ).start()
 
     new CronJob('00 15 * * 1-5', () ->
         robot.send {room: "pj-frima-rodin"}, "@channel\n何か共有事項ないですか〜"
